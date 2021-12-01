@@ -20,7 +20,8 @@ RUN apt update \
 
 COPY . .
 
-RUN composer update \
+RUN mv .env.example .env
+    && composer update \
     && composer install --optimize-autoloader --no-dev \
     && php artisan key:generate
 
