@@ -20,10 +20,11 @@ RUN apt update \
 
 COPY . .
 
-RUN composer update \
+RUN mv .env.example .env \
+    && composer update \
     && composer install --optimize-autoloader --no-dev \
     && php artisan key:generate
 
-EXPOSE 8080
+EXPOSE 8000
 
 CMD ["php", "artisan", "serve"]
